@@ -37,3 +37,7 @@ Route::post('tasks', 'TaskController@store');
 Route::get('/tasks/{task}/edit', 'TaskController@edit');
 Route::put('/tasks/{task}', 'TaskController@update');
 Route::get('/tasks/{task}/delete', 'TaskController@destroy');
+
+
+//UserTaskLog
+Route::resource('usertasklogs', 'UserTaskLogController');

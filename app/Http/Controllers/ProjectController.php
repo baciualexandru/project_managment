@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProjectController extends Controller
 {
@@ -37,6 +38,18 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            ['title.required' => 'this is my custom error message for required']
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/projects/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $project = new Project();
         $project->user_id = 1;
         $project->title = $request->input('title');
@@ -98,7 +111,7 @@ class ProjectController extends Controller
     public function tasks(Project $project)
     {
         $total_time = 0;
-        
+
         foreach($project->tasks as $task){
             $total_time += $task->duration;
         }

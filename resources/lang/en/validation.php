@@ -103,6 +103,11 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'title' => [
+            'required' => 'Acesta este un mesaj erora :between',
+        ]
+        
     ],
 
     /*
@@ -116,6 +121,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+
+     
+
+    ],
 
 ];
